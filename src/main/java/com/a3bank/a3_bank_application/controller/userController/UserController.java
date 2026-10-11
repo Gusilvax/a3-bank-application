@@ -1,5 +1,6 @@
 package com.a3bank.a3_bank_application.controller.userController;
 
+import com.a3bank.a3_bank_application.dto.input.LoginRequestDTO;
 import com.a3bank.a3_bank_application.dto.input.SignUpRequestDTO;
 import com.a3bank.a3_bank_application.dto.output.SignUpResponseDTO;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @PostMapping("/signup")
-    public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request){
-       log.info("Received sign up request: {}", request);
+    public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request) {
+        log.info("Received sign up request: {}", request);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginRequestDTO> login(HttpServlet httpRequest, @Valid @RequestBody LoginRequestDTO request) {
+        log.info("Received login request: {}", request);
     }
 
 
