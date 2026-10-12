@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(),));
 
     }
 
