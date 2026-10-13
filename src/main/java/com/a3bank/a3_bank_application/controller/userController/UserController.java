@@ -20,19 +20,21 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(),));
+        log.info("Received singup request: {}", request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(), request.password()));
 
     }
-
-
 
     @PostMapping("/login")
     public ResponseEntity<LoginRequestDTO> login(HttpServlet httpRequest, @Valid @RequestBody LoginRequestDTO request) {
         log.info("Received login request: {}", request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new LoginRequestDTO(request.cpf(),request.password()));
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<DeleteRequestDTO> delete(HttpServlet httpRequest, @Valid @RequestBody DeleteRequestDTO request) {
         log.info("Received delete request: {}", request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new DeleteRequestDTO(request.email(),request.cpf(),request.password()));
+
     }
 }
