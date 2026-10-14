@@ -1,6 +1,7 @@
 package com.a3bank.a3_bank_application.controller.userController;
 
 
+import com.a3bank.a3_bank_application.dto.input.CloseRequestDTO;
 import com.a3bank.a3_bank_application.dto.input.DeleteRequestDTO;
 import com.a3bank.a3_bank_application.dto.input.LoginRequestDTO;
 import com.a3bank.a3_bank_application.dto.input.SignUpRequestDTO;
@@ -8,7 +9,6 @@ import com.a3bank.a3_bank_application.dto.output.SignUpResponseDTO;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request) {
-        log.info("Received singup account request: {}", request);
+        log.info("Received signup account request: {}", request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(), request.password(), "1234", "56789"));
 
     }
@@ -41,7 +41,7 @@ public class UserController {
     @PostMapping("/{id}/close")
     public ResponseEntity<CloseRequestDTO> delete(HttpServlet httpRequest, @Valid @RequestBody CloseRequestDTO request) {
         log.info("Received close account request: {}", request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new DeleteRequestDTO(request.email(),request.cpf(),request.password()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CloseRequestDTO(request.name(),request.cpf(),request.password(),request.email()));
 
     }
 }
