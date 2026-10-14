@@ -20,20 +20,27 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDTO> signUp(HttpServlet httpRequest, @Valid @RequestBody SignUpRequestDTO request) {
-        log.info("Received singup request: {}", request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(), request.password()));
+        log.info("Received singup account request: {}", request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SignUpResponseDTO(1L, request.name(), request.email(), request.password(), "1234", "56789"));
 
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginRequestDTO> login(HttpServlet httpRequest, @Valid @RequestBody LoginRequestDTO request) {
-        log.info("Received login request: {}", request);
+        log.info("Received login account request: {}", request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new LoginRequestDTO(request.cpf(),request.password()));
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<DeleteRequestDTO> delete(HttpServlet httpRequest, @Valid @RequestBody DeleteRequestDTO request) {
-        log.info("Received delete request: {}", request);
+        log.info("Received delete account request: {}", request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new DeleteRequestDTO(request.email(),request.cpf(),request.password()));
+
+    }
+
+    @PostMapping("/{id}/close")
+    public ResponseEntity<CloseRequestDTO> delete(HttpServlet httpRequest, @Valid @RequestBody CloseRequestDTO request) {
+        log.info("Received close account request: {}", request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new DeleteRequestDTO(request.email(),request.cpf(),request.password()));
 
     }

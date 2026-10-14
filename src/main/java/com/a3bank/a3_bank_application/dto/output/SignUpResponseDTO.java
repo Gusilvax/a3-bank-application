@@ -4,6 +4,8 @@ public record SignUpResponseDTO(
         Long id,
         String name,
         String username,
-        String password
+        String password,
+        String agencia,
+        String conta
 ) {
 }
