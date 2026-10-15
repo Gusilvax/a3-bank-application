@@ -6,4 +6,7 @@ public record CloseResponseDTO(
         String agencia,
         String conta
 ) {
+    public CloseResponseDTO(String accountClosedSuccessfully) {
+
+    }
 }
